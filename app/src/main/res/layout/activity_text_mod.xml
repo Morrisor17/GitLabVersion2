@@ -128,6 +128,12 @@
             android:background="@color/button_color"
             android:clickable="false" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alternate"
+            android:id="@+id/alternate" />
+
         <Space
             android:layout_width="0sp"
             android:layout_height="match_parent"
