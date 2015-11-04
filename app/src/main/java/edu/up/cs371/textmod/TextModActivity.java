@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class TextModActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -50,6 +51,9 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
     private Button clearText;
     private Button lowerText;
+
+    //added button for alternate_version
+    private Button randomChar;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -123,6 +127,9 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         lowerText = (Button) findViewById(R.id.button7);
         lowerText.setOnClickListener(this);
 
+        randomChar = (Button) findViewById(R.id.button3);
+        randomChar.setOnClickListener(this);
+
     }
 
     public void onClick(View v)
@@ -145,6 +152,16 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         }
         else if(v.getId()==lowerText.getId()) {
             editText.setText(editText.getText().toString().toLowerCase());
+        }
+        //added in alternate_version
+        else if(v == randomChar){
+            Random rand = new Random();
+            String temp = editText.getText().toString();
+            int pos = rand.nextInt(temp.length());
+            char[] chars = temp.toCharArray();
+            int newChar = rand.nextInt(93)+33;
+            chars[pos] = (char) newChar;
+            editText.setText(new String(chars));
         }
     }
 
