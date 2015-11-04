@@ -42,6 +42,8 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     // instance variables containing buttons
     private Button toUpper;
 
+    private Button alternate;
+
     //instance variables containing editText
     private EditText baseCase;
 
@@ -73,13 +75,15 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
         //set instance variables for our buttons
         toUpper = (Button)findViewById(R.id.button6);
-
+        alternate = (Button)findViewById(R.id.alternate);
         //set instance variables for our EditText
         editText = (EditText)findViewById(R.id.editText);
 
         reverse = (Button) findViewById(R.id.button4);
 
         noPunc = (Button) findViewById(R.id.noPunc);
+
+
 
 
 
@@ -124,6 +128,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
         //define a listener for the buttons
         toUpper.setOnClickListener(this);
+        alternate.setOnClickListener(this);
         
         clearText = (Button) findViewById(R.id.button);
         clearText.setOnClickListener(this);
@@ -147,26 +152,44 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         return temp;
     }
 
-    public void onClick(View v)
-    {
+    public void onClick(View v) {
         if (v == reverse) {
             String temp;
             StringBuffer bw = new StringBuffer(editText.getText().toString());
             temp = bw.reverse().toString();
             editText.setText(temp);
-        }
-        else if (v==toUpper){
+        } else if (v == toUpper) {
             editText.setText(editText.getText().toString().toUpperCase());
-        }
-        else if (v == copyName) {
-        String selectedText = spinner.getSelectedItem().toString();
-        editText.append("" + selectedText);
-        }
-        else if (v == clearText) {
+        } else if (v == copyName) {
+            String selectedText = spinner.getSelectedItem().toString();
+            editText.append("" + selectedText);
+        } else if (v == clearText) {
             editText.setText("");
-        }
-        else if(v.getId()==lowerText.getId()) {
+        } else if (v.getId() == lowerText.getId()) {
             editText.setText(editText.getText().toString().toLowerCase());
+        } else if (v == alternate) {
+            //String jumbo = editText.getText().toString();
+            final char[] chars = editText.getText().toString().toCharArray();
+            final int len = chars.length;
+            char c;
+            for (int i = 0; i < len; i++) {
+                c = chars[i];
+                if (i % 2 == 0)
+                {
+                    if (c < 91 && c > 64 )
+                    {
+                        chars[i] += 32;
+                    }
+                }
+                else
+                {
+                    if(c > 96 && c < 123)
+                    {
+                        chars[i] -= 32;
+                    }
+                }
+                editText.setText(new String(chars));
+            }
         }
         else if(v==noPunc) {
             editText.setText(removePunc(editText.getText().toString()));
