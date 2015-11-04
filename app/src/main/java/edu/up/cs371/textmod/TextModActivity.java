@@ -50,6 +50,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
     private Button clearText;
     private Button lowerText;
+    private Button noPunc;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -72,6 +73,8 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         editText = (EditText)findViewById(R.id.editText);
 
         reverse = (Button) findViewById(R.id.button4);
+
+        noPunc = (Button) findViewById(R.id.noPunc);
 
 
 
@@ -123,6 +126,14 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         lowerText = (Button) findViewById(R.id.button7);
         lowerText.setOnClickListener(this);
 
+        noPunc.setOnClickListener(this);
+
+    }
+
+    public String removePunc(String s) {
+        String temp = s;
+        temp = temp.replaceAll("\\p{Punct}+", "");
+        return temp;
     }
 
     public void onClick(View v)
@@ -145,6 +156,9 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         }
         else if(v.getId()==lowerText.getId()) {
             editText.setText(editText.getText().toString().toLowerCase());
+        }
+        else if(v==noPunc) {
+            editText.setText(removePunc(editText.getText().toString()));
         }
     }
 
