@@ -12,6 +12,7 @@
         <item>@mipmap/maddy</item>
         <item>@mipmap/cena</item>
         <item>@mipmap/ryan_profile</item>
+        <item>@mipmap/jinmok</item>
     </array>
 
     <string-array name="spinner_names">
@@ -21,6 +22,7 @@
         <item>Maddy</item>
         <item>Nick</item>
         <item>Ryan</item>
+        <item>Jin</item>
     </string-array>
 
 </resources>
