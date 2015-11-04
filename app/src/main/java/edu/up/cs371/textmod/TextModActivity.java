@@ -51,6 +51,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     private Button clearText;
     private Button lowerText;
     private Button noPunc;
+    private Button noWhitespace;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -128,6 +129,9 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
         noPunc.setOnClickListener(this);
 
+        noWhitespace = (Button) findViewById(R.id.noWhitespace);
+        noWhitespace.setOnClickListener(this);
+
     }
 
     public String removePunc(String s) {
@@ -159,6 +163,11 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         }
         else if(v==noPunc) {
             editText.setText(removePunc(editText.getText().toString()));
+        }
+        else if (v.getId()==noWhitespace.getId()) {
+            String newString = editText.getText().toString().replaceAll("\\s+", "");
+            editText.setText(newString);
+
         }
     }
 
