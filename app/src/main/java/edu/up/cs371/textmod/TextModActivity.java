@@ -45,11 +45,10 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     private EditText baseCase;
 
     private EditText editText;
-
     private Button reverse;
-
     private Button clearText;
     private Button lowerText;
+    private Button noWhitespace;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -72,6 +71,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         editText = (EditText)findViewById(R.id.editText);
 
         reverse = (Button) findViewById(R.id.button4);
+
 
 
 
@@ -123,6 +123,9 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         lowerText = (Button) findViewById(R.id.button7);
         lowerText.setOnClickListener(this);
 
+        noWhitespace = (Button) findViewById(R.id.noWhitespace);
+        noWhitespace.setOnClickListener(this);
+
     }
 
     public void onClick(View v)
@@ -143,8 +146,13 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         else if (v == clearText) {
             editText.setText("");
         }
-        else if(v.getId()==lowerText.getId()) {
+        else if (v.getId()==lowerText.getId()) {
             editText.setText(editText.getText().toString().toLowerCase());
+        }
+        else if (v.getId()==noWhitespace.getId()) {
+            String newString = editText.getText().toString().replaceAll("\\s+", "");
+            editText.setText(newString);
+
         }
     }
 
@@ -175,6 +183,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
         return super.onOptionsItemSelected(item);
     }
+
 
     /**
      * class that handles our spinner's selection events
